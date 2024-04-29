@@ -11,4 +11,6 @@ class StringConstants {
   static const String welcomeButtonText = "Get Started";
   static const String homePageTitle = "Browse";
   static const String homePageDescription = "Discover things of this world";
+  static const String homePageRecommended = "Recommended for you";
+  static const String homePageSeeAll = "See All";
 }

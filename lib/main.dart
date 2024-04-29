@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_haberler/product/constants/color_constants.dart';
 import 'package:flutter_haberler/ui/homepage/home_page.dart';
 import 'package:flutter_haberler/ui/onboarding/onboarding.dart';
 import 'package:flutter_haberler/ui/splash/splash_screen.dart';
@@ -14,6 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        splashColor: ColorConstants.transparent,
+        highlightColor: ColorConstants.transparent,
+        hoverColor: ColorConstants.transparent,
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Nuntium',
       initialRoute: '/',
