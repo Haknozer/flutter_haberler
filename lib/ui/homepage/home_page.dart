@@ -36,46 +36,45 @@ class _HomePage extends State<HomePage> {
         child: ListView(
           children: [
             header(), // başlık
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: categoriesBuild(),
-            ), // kategoriler
+            Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: categoriesBuild()), // kategoriler
             futureBuilderBuild(), // haberler
-            Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 10),
-              child: recommendedText(context),
-            ),
-            FutureBuilder(
-              builder: (context, snapshot) => ListView.builder(
-                itemCount: 8,
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
-                            "https://www.cumhuriyet.com.tr/Archive/2024/4/29/2201294/kapak_155625.jpg",
-                            height: 80,
-                          ),
-                        ),
-                      ),
-                      const Expanded(
-                        child: ListTile(
-                          title: Text("data"),
-                          subtitle: Text("data"),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            )
+            Padding(padding: const EdgeInsets.only(top: 30, bottom: 10), child: recommendedText(context)),
+            recommendedNews(),
           ],
         ),
+      ),
+    );
+  }
+
+  FutureBuilder<Object?> recommendedNews() {
+    return FutureBuilder(
+      future: null,
+      builder: (context, snapshot) => ListView.builder(
+        itemCount: 8,
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    "https://www.cumhuriyet.com.tr/Archive/2024/4/30/2201629/kapak_142214.jpg",
+                    height: 80,
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: ListTile(
+                  title: Text("data"),
+                  subtitle: Text("data"),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -154,7 +153,10 @@ class _HomePage extends State<HomePage> {
         TitleText(title: StringConstants.homePageTitle),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 8),
-          child: DescriptionText(description: StringConstants.homePageDescription),
+          child: DescriptionText(
+            description: StringConstants.homePageDescription,
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );

@@ -4,9 +4,9 @@ import '../../constants/color_constants.dart';
 class TitleText extends StatelessWidget {
   final String title;
   const TitleText({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

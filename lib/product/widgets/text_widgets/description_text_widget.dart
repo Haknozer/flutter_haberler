@@ -5,10 +5,12 @@ import '../../constants/color_constants.dart';
 
 class DescriptionText extends StatelessWidget {
   final String description;
+  final TextAlign textAlign;
   const DescriptionText({
-    Key? key,
+    super.key,
     required this.description,
-  }) : super(key: key);
+    required this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class DescriptionText extends StatelessWidget {
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: ColorConstants.grayPrimary,
           ),
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
     );
   }
 }

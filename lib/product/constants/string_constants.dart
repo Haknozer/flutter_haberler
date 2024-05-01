@@ -13,4 +13,10 @@ class StringConstants {
   static const String homePageDescription = "Discover things of this world";
   static const String homePageRecommended = "Recommended for you";
   static const String homePageSeeAll = "See All";
+  static const String loginPageTitle = "Welcome Back 👋";
+  static const String loginPageText = "I am happy to see you again. You can continue where you left off by logging in";
+  static const String loginPageSignUpTitle = "Welcome to Nuntium 👋";
+  static const String loginPageSignUpText =
+      "Hello, I guess you are new around here. You can start using the application after sign up.";
+  static const String loginPageSignUp = "Don't have an account? Sign Up";
 }

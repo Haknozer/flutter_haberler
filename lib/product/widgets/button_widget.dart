@@ -8,10 +8,10 @@ class Button extends StatelessWidget {
   final String route;
 
   const Button({
-    Key? key,
+    super.key,
     required this.text,
     required this.route,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/color_constants.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
-  const AppBarWidget({Key? key})
-      : preferredSize = const Size.fromHeight(kToolbarHeight),
-        super(key: key);
+  const AppBarWidget({super.key}) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
   final Size preferredSize;

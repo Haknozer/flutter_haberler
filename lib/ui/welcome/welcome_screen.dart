@@ -26,7 +26,10 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           Image.asset(ImageConstants.welcomehands.getImage),
           const TitleText(title: StringConstants.appName),
-          const DescriptionText(description: StringConstants.welcomeText),
+          const DescriptionText(
+            description: StringConstants.welcomeText,
+            textAlign: TextAlign.center,
+          ),
           const Button(text: StringConstants.welcomeButtonText, route: "/homepage"),
         ],
       ),

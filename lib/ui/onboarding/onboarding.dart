@@ -20,7 +20,10 @@ class OnBoarding extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       Image.asset(ImageConstants.onboardbuild.getImage),
       const TitleText(title: StringConstants.onBoardTitle),
-      const DescriptionText(description: StringConstants.onBoardText),
+      const DescriptionText(
+        description: StringConstants.onBoardText,
+        textAlign: TextAlign.center,
+      ),
       const Button(text: StringConstants.onBoardButtonText, route: '/welcome'),
     ]));
   }
