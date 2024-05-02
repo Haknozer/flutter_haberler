@@ -3,11 +3,12 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_haberler/firebase_options.dart';
 import 'package:flutter_haberler/product/constants/color_constants.dart';
+import 'package:flutter_haberler/product/model/shared_preferences.dart';
+import 'package:flutter_haberler/ui/articlepage/article_page.dart';
 import 'package:flutter_haberler/ui/homepage/home_page.dart';
 import 'package:flutter_haberler/ui/login/login.dart';
 import 'package:flutter_haberler/ui/onboarding/onboarding.dart';
-import 'package:flutter_haberler/ui/splas'
-    'h/splash_screen.dart';
+import 'package:flutter_haberler/ui/splash/splash_screen.dart';
 import 'package:flutter_haberler/ui/welcome/welcome_screen.dart';
 
 void main() async {
@@ -18,6 +19,7 @@ void main() async {
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
   ]);
+  await SharedInit.instance.sharedSetup();
   runApp(const MyApp());
 }
 
@@ -39,8 +41,9 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashScreen(),
         '/onbarding': (context) => const OnBoarding(),
         '/welcome': (context) => const WelcomeScreen(),
-        '/': (context) => const LoginPage(),
-        '/homepage': (context) => const HomePage(),
+        '/login': (context) => const LoginPage(),
+        '/': (context) => const HomePage(),
+        '/articlepage': (context) => ArticlePage(),
       },
     );
   }

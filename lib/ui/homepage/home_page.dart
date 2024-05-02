@@ -134,7 +134,8 @@ class _HomePage extends State<HomePage> {
 
   Chip categoriesListViewChip(List<String> categori, int index, BuildContext context) {
     return Chip(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(26)),
+      shape: RoundedRectangleBorder(
+          side: const BorderSide(style: BorderStyle.none), borderRadius: BorderRadius.circular(26)),
       labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
       label: Text(
         categori[index],
@@ -181,33 +182,42 @@ class _HomePage extends State<HomePage> {
       itemCount: snapshot.data!.length,
       itemBuilder: (context, index) {
         var news = snapshot.data;
-        return Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8, bottom: 12),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    news![index].image ?? "",
-                  )),
-            ),
-            Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    newsBookmark(),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: newsTitle(news, index, context),
-                    ),
-                  ],
-                ),
+        return GestureDetector(
+          onTap: () {
+            Navigator.popAndPushNamed(
+              context,
+              '/articlepage',
+              arguments: news,
+            );
+          },
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8, bottom: 12),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      news![index].image ?? "",
+                    )),
               ),
-            )
-          ],
+              Positioned.fill(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      newsBookmark(),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: newsTitle(news, index, context),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         );
       },
     );

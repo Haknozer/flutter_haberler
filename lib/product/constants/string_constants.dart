@@ -18,5 +18,8 @@ class StringConstants {
   static const String loginPageSignUpTitle = "Welcome to Nuntium 👋";
   static const String loginPageSignUpText =
       "Hello, I guess you are new around here. You can start using the application after sign up.";
-  static const String loginPageSignUp = "Don't have an account? Sign Up";
+  static const String loginPageDontHaveAccount = "Don't have an account? ";
+  static const String loginPageSignUp = "Sign Up";
+  static const String loginPageHaveAccount = "Already have an account? ";
+  static const String loginPageSignIn = "Sign In";
 }

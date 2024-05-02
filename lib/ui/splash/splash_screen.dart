@@ -3,9 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_haberler/product/constants/color_constants.dart';
 import 'package:flutter_haberler/product/constants/icon_constants.dart';
 import 'package:flutter_haberler/product/constants/string_constants.dart';
+import 'package:flutter_haberler/ui/splash/splash_current_user.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  // ignore: prefer_typing_uninitialized_variables
+  var user;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    user = SplashScrennCurrentUser().currentUser();
+    print(user);
+    navigatorPage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +45,7 @@ class SplashScreen extends StatelessWidget {
 
   AnimatedTextKit animatedTextKitBuild(BuildContext context) {
     return AnimatedTextKit(
+      repeatForever: true,
       animatedTexts: [
         WavyAnimatedText(StringConstants.appName,
             textStyle: Theme.of(context)
@@ -36,6 +54,16 @@ class SplashScreen extends StatelessWidget {
                 ?.copyWith(color: ColorConstants.white, fontWeight: FontWeight.bold)),
       ],
       isRepeatingAnimation: true,
+    );
+  }
+
+  navigatorPage() {
+    Future.delayed(const Duration(seconds: 3)).then(
+      (value) {
+        user == true
+            ? Navigator.popAndPushNamed(context, "/homepage")
+            : Navigator.popAndPushNamed(context, "onbarding");
+      },
     );
   }
 }
