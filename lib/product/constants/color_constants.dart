@@ -11,4 +11,5 @@ class ColorConstants {
   static const Color grayLighter = Color(0xffF3F4F6);
   static const Color transparent = Color(0x00000000);
   static const Color grayDaker = Color(0xFF666C8E);
+  static const Color grayLight = Color(0xFFACAFC3);
 }

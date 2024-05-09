@@ -20,7 +20,6 @@ var _action = AuthAction.signIn;
 class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     CurrentUser().setCurrentUser(FirebaseAuth.instance);
   }
@@ -70,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                     AuthStateChangeAction<SignedIn>((context, state) {
                       if (state.user != null) {
                         print("giriş yapıldı");
+                        Navigator.popAndPushNamed(context, '/homepage');
                       }
                     })
                   ],

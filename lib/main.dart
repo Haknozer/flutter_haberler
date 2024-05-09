@@ -5,6 +5,8 @@ import 'package:flutter_haberler/firebase_options.dart';
 import 'package:flutter_haberler/product/constants/color_constants.dart';
 import 'package:flutter_haberler/product/model/shared_preferences.dart';
 import 'package:flutter_haberler/ui/articlepage/article_page.dart';
+import 'package:flutter_haberler/ui/categories/categories.dart';
+import 'package:flutter_haberler/ui/categorieshomepage/categories_home_page.dart';
 import 'package:flutter_haberler/ui/homepage/home_page.dart';
 import 'package:flutter_haberler/ui/login/login.dart';
 import 'package:flutter_haberler/ui/onboarding/onboarding.dart';
@@ -38,12 +40,14 @@ class MyApp extends StatelessWidget {
       title: 'Nuntium',
       initialRoute: '/',
       routes: {
-        '/splash': (context) => const SplashScreen(),
-        '/onbarding': (context) => const OnBoarding(),
+        '/': (context) => const SplashScreen(),
+        '/onboarding': (context) => const OnBoarding(),
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginPage(),
-        '/': (context) => const HomePage(),
-        '/articlepage': (context) => ArticlePage(),
+        '/homepage': (context) => const HomePage(),
+        '/articlepage': (context) => const ArticlePage(),
+        '/categories': (context) => const CategoriesPage(),
+        '/categorieshomepage': (context) => const CategoriesHomePage(),
       },
     );
   }

@@ -22,4 +22,6 @@ class StringConstants {
   static const String loginPageSignUp = "Sign Up";
   static const String loginPageHaveAccount = "Already have an account? ";
   static const String loginPageSignIn = "Sign In";
+  static const String categoriesTitle = "Categories";
+  static const String categoriesText = "Thousands of articles in each category";
 }

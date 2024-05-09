@@ -5,11 +5,11 @@ import '../../constants/color_constants.dart';
 
 class DescriptionText extends StatelessWidget {
   final String description;
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
   const DescriptionText({
     super.key,
     required this.description,
-    required this.textAlign,
+    this.textAlign,
   });
 
   @override

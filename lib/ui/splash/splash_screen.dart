@@ -17,7 +17,6 @@ class _SplashScreenState extends State<SplashScreen> {
   var user;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     user = SplashScrennCurrentUser().currentUser();
     print(user);
@@ -62,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
       (value) {
         user == true
             ? Navigator.popAndPushNamed(context, "/homepage")
-            : Navigator.popAndPushNamed(context, "onbarding");
+            : Navigator.popAndPushNamed(context, "/onboarding");
       },
     );
   }

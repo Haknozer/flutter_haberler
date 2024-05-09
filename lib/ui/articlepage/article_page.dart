@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_haberler/product/constants/color_constants.dart';
 import 'package:flutter_haberler/product/constants/icon_constants.dart';
-import 'package:flutter_haberler/product/model/news_model.dart';
 import 'package:flutter_haberler/product/widgets/appbar_widget.dart';
 
 // ignore: must_be_immutable
@@ -16,11 +12,11 @@ class ArticlePage extends StatefulWidget {
 }
 
 class _ArticlePageState extends State<ArticlePage> {
+  // ignore: prefer_typing_uninitialized_variables
   var news;
   @override
   Widget build(BuildContext context) {
-    final Object? arguments = ModalRoute.of(context)!.settings.arguments;
-    news = arguments!;
+    news = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       backgroundColor: ColorConstants.white,
       appBar: const AppBarWidget(),
@@ -108,7 +104,11 @@ class _ArticlePageState extends State<ArticlePage> {
   Row articlePageHeader() {
     return Row(
       children: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back, color: ColorConstants.grayPrimary, size: 24)),
+        IconButton(
+            onPressed: () {
+              Navigator.popAndPushNamed(context, '/homepage');
+            },
+            icon: const Icon(Icons.arrow_back, color: ColorConstants.grayPrimary, size: 24)),
         const Spacer(),
         Image.asset(IconConstants.share.getIcon, width: 24, color: ColorConstants.grayPrimary),
         IconButton(

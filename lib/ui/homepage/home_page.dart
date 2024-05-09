@@ -4,6 +4,7 @@ import 'package:flutter_haberler/product/constants/string_constants.dart';
 import 'package:flutter_haberler/product/model/categories_model.dart';
 import 'package:flutter_haberler/product/model/news_model.dart';
 import 'package:flutter_haberler/product/widgets/appbar_widget.dart';
+import 'package:flutter_haberler/product/widgets/bottom_navigation_bar_widget.dart';
 import 'package:flutter_haberler/product/widgets/text_widgets/description_text_widget.dart';
 import 'package:flutter_haberler/product/widgets/text_widgets/title_text_widget.dart';
 import 'package:flutter_haberler/ui/homepage/home_page_api.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 int chipSelectedNumber = 0;
 
 class _HomePage extends State<HomePage> {
+  String tag = "general";
   late HomePageNewsService homePageNewsService;
   late Categories categories;
   @override
@@ -43,6 +45,9 @@ class _HomePage extends State<HomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBarWidget(
+        selectedIndex: 0,
+      ),
     );
   }
 
@@ -61,7 +66,7 @@ class _HomePage extends State<HomePage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
-                    "https://www.cumhuriyet.com.tr/Archive/2024/4/30/2201629/kapak_142214.jpg",
+                    "https://cdn.karar.com/news/1694185.jpg",
                     height: 80,
                   ),
                 ),
@@ -121,6 +126,7 @@ class _HomePage extends State<HomePage> {
           onTap: () {
             setState(() {
               chipSelectedNumber = index;
+              tag = categori[index];
             });
           },
           child: Padding(
@@ -165,7 +171,7 @@ class _HomePage extends State<HomePage> {
 
   FutureBuilder<List<News>> futureBuilderBuild() {
     return FutureBuilder(
-      future: homePageNewsService.getNews(),
+      future: homePageNewsService.getNews(tag),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return SizedBox(height: 175, child: listViewBuild(snapshot));
@@ -187,7 +193,7 @@ class _HomePage extends State<HomePage> {
             Navigator.popAndPushNamed(
               context,
               '/articlepage',
-              arguments: news,
+              arguments: news[index],
             );
           },
           child: Stack(

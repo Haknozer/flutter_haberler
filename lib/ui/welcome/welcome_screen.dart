@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             description: StringConstants.welcomeText,
             textAlign: TextAlign.center,
           ),
-          const Button(text: StringConstants.welcomeButtonText, route: "/homepage"),
+          const Button(text: StringConstants.welcomeButtonText, route: "/login"),
         ],
       ),
     );
