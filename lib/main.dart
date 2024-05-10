@@ -5,11 +5,13 @@ import 'package:flutter_haberler/firebase_options.dart';
 import 'package:flutter_haberler/product/constants/color_constants.dart';
 import 'package:flutter_haberler/product/model/shared_preferences.dart';
 import 'package:flutter_haberler/ui/articlepage/article_page.dart';
+import 'package:flutter_haberler/ui/bookmarks/bookmarks.dart';
 import 'package:flutter_haberler/ui/categories/categories.dart';
 import 'package:flutter_haberler/ui/categorieshomepage/categories_home_page.dart';
 import 'package:flutter_haberler/ui/homepage/home_page.dart';
 import 'package:flutter_haberler/ui/login/login.dart';
 import 'package:flutter_haberler/ui/onboarding/onboarding.dart';
+import 'package:flutter_haberler/ui/profile/profile.dart';
 import 'package:flutter_haberler/ui/splash/splash_screen.dart';
 import 'package:flutter_haberler/ui/welcome/welcome_screen.dart';
 
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
       title: 'Nuntium',
       initialRoute: '/',
       routes: {
-        '/': (context) => const SplashScreen(),
+        '/splash': (context) => const SplashScreen(),
         '/onboarding': (context) => const OnBoarding(),
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginPage(),
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
         '/articlepage': (context) => const ArticlePage(),
         '/categories': (context) => const CategoriesPage(),
         '/categorieshomepage': (context) => const CategoriesHomePage(),
+        '/': (context) => const Bookmarks(),
+        '/profile': (context) => const Profile(),
       },
     );
   }

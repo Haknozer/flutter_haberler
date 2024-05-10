@@ -24,4 +24,13 @@ class StringConstants {
   static const String loginPageSignIn = "Sign In";
   static const String categoriesTitle = "Categories";
   static const String categoriesText = "Thousands of articles in each category";
+  static const String profileTitle = "Profile";
+  static const String profileNotifications = "Notifications";
+  static const String profileLanguage = "Language";
+  static const String profileChangePassword = "Change Password";
+  static const String profilePrivacy = "Privacy";
+  static const String profileTermsConditions = "Terms & Conditions";
+  static const String profileSignOut = "Sign Out";
+  static const String bookmarksTitle = "Bookmarks";
+  static const String bookmarksText = "Saved articles to the library";
 }

@@ -16,6 +16,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: ColorConstants.white,
       elevation: 0,
     );

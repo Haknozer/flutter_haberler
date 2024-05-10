@@ -83,11 +83,16 @@ class _CategoriesHomePageState extends State<CategoriesHomePage> {
   Padding stackBuild(List<News>? news, int index, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Stack(
-        children: [
-          ClipRRect(borderRadius: BorderRadius.circular(12), child: Image.network(news![index].image ?? "")),
-          newsTextBuild(news, index, context),
-        ],
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, '/articlepage', arguments: news[index]);
+        },
+        child: Stack(
+          children: [
+            ClipRRect(borderRadius: BorderRadius.circular(12), child: Image.network(news![index].image ?? "")),
+            newsTextBuild(news, index, context),
+          ],
+        ),
       ),
     );
   }

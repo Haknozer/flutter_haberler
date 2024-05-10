@@ -106,7 +106,7 @@ class _ArticlePageState extends State<ArticlePage> {
       children: [
         IconButton(
             onPressed: () {
-              Navigator.popAndPushNamed(context, '/homepage');
+              Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back, color: ColorConstants.grayPrimary, size: 24)),
         const Spacer(),

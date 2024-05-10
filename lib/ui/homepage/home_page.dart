@@ -190,7 +190,7 @@ class _HomePage extends State<HomePage> {
         var news = snapshot.data;
         return GestureDetector(
           onTap: () {
-            Navigator.popAndPushNamed(
+            Navigator.pushNamed(
               context,
               '/articlepage',
               arguments: news[index],

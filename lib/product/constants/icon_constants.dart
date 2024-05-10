@@ -1,6 +1,7 @@
 enum IconConstants {
   applogo('app_logo'),
   share('share'),
+  user('user'),
   ;
 
   final String value;
