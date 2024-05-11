@@ -37,21 +37,23 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Padding body(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TitleText(title: StringConstants.profileTitle),
-          profilHeader(context),
-          profilNotifications(context),
-          ListTileWidget(leadingText: StringConstants.profileLanguage),
-          ListTileWidget(leadingText: StringConstants.profileChangePassword),
-          ListTileWidget(leadingText: StringConstants.profilePrivacy),
-          ListTileWidget(leadingText: StringConstants.profileTermsConditions),
-          profilSignOut(context)
-        ],
+  SingleChildScrollView body(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const TitleText(title: StringConstants.profileTitle),
+            profilHeader(context),
+            profilNotifications(context),
+            ListTileWidget(leadingText: StringConstants.profileLanguage),
+            ListTileWidget(leadingText: StringConstants.profileChangePassword),
+            ListTileWidget(leadingText: StringConstants.profilePrivacy),
+            ListTileWidget(leadingText: StringConstants.profileTermsConditions),
+            profilSignOut(context)
+          ],
+        ),
       ),
     );
   }
