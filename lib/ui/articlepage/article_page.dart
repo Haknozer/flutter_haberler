@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_haberler/product/constants/color_constants.dart';
 import 'package:flutter_haberler/product/constants/icon_constants.dart';
 import 'package:flutter_haberler/product/widgets/appbar_widget.dart';
+import 'package:flutter_haberler/ui/bookmarks/bookmarks_firebase.dart';
 
 // ignore: must_be_immutable
 class ArticlePage extends StatefulWidget {
@@ -14,6 +15,13 @@ class ArticlePage extends StatefulWidget {
 class _ArticlePageState extends State<ArticlePage> {
   // ignore: prefer_typing_uninitialized_variables
   var news;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     news = ModalRoute.of(context)!.settings.arguments;
@@ -112,7 +120,11 @@ class _ArticlePageState extends State<ArticlePage> {
         const Spacer(),
         Image.asset(IconConstants.share.getIcon, width: 24, color: ColorConstants.grayPrimary),
         IconButton(
-            onPressed: () {}, icon: const Icon(Icons.bookmark_border, color: ColorConstants.grayPrimary, size: 24))
+            onPressed: () {
+              BookmarkFirestoreDatabase().collectionAdd(
+                  description: news.description, image: news.image, name: news.name, source: news.source);
+            },
+            icon: const Icon(Icons.bookmark_border, color: ColorConstants.grayPrimary, size: 24))
       ],
     );
   }

@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       title: 'Nuntium',
       initialRoute: '/',
       routes: {
-        '/splash': (context) => const SplashScreen(),
+        '/': (context) => const SplashScreen(),
         '/onboarding': (context) => const OnBoarding(),
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginPage(),
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         '/articlepage': (context) => const ArticlePage(),
         '/categories': (context) => const CategoriesPage(),
         '/categorieshomepage': (context) => const CategoriesHomePage(),
-        '/': (context) => const Bookmarks(),
+        '/bookmarks': (context) => const Bookmarks(),
         '/profile': (context) => const Profile(),
       },
     );

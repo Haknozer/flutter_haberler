@@ -33,4 +33,6 @@ class StringConstants {
   static const String profileSignOut = "Sign Out";
   static const String bookmarksTitle = "Bookmarks";
   static const String bookmarksText = "Saved articles to the library";
+  static const String bookmarksNoBookmarking =
+      "You haven't saved any articles yet. Start reading and bookmarking them now";
 }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class News {
   String? key;
   String? url;
@@ -17,6 +19,15 @@ class News {
     source = json['source'];
   }
 
+  factory News.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
+    final data = documentSnapshot.data()!;
+    return News(
+      description: data['description'],
+      image: data['image'],
+      name: data['name'],
+      source: data['source'],
+    );
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['key'] = key;

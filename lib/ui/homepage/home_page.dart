@@ -7,6 +7,7 @@ import 'package:flutter_haberler/product/widgets/appbar_widget.dart';
 import 'package:flutter_haberler/product/widgets/bottom_navigation_bar_widget.dart';
 import 'package:flutter_haberler/product/widgets/text_widgets/description_text_widget.dart';
 import 'package:flutter_haberler/product/widgets/text_widgets/title_text_widget.dart';
+import 'package:flutter_haberler/ui/bookmarks/bookmarks_firebase.dart';
 import 'package:flutter_haberler/ui/homepage/home_page_api.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,12 +22,14 @@ int chipSelectedNumber = 0;
 class _HomePage extends State<HomePage> {
   String tag = "general";
   late HomePageNewsService homePageNewsService;
+  late BookmarkFirestoreDatabase bookmarkFirestoreDatabase;
   late Categories categories;
   @override
   void initState() {
     super.initState();
     homePageNewsService = HomePageNewsService();
     categories = Categories();
+    bookmarkFirestoreDatabase = BookmarkFirestoreDatabase();
   }
 
   @override
@@ -51,36 +54,79 @@ class _HomePage extends State<HomePage> {
     );
   }
 
-  FutureBuilder<Object?> recommendedNews() {
+  FutureBuilder<List<News>> recommendedNews() {
     return FutureBuilder(
-      future: null,
-      builder: (context, snapshot) => ListView.builder(
-        itemCount: 8,
-        shrinkWrap: true,
-        physics: const ClampingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    "https://cdn.karar.com/news/1694185.jpg",
-                    height: 80,
-                  ),
-                ),
-              ),
-              const Expanded(
-                child: ListTile(
-                  title: Text("data"),
-                  subtitle: Text("data"),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+      future: bookmarkFirestoreDatabase.getBookmarksNews(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return bookmarkingListView(snapshot);
+        } else {
+          return noBookmarking(context);
+        }
+      },
+    );
+  }
+
+  ListView bookmarkingListView(AsyncSnapshot<List<News>> snapshot) {
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: snapshot.data!.length,
+      itemBuilder: (context, index) {
+        var news = snapshot.data;
+        return ListTile(
+          contentPadding: const EdgeInsets.all(0),
+          leading: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            child: Image.network(
+              news![index].image ?? "",
+              fit: BoxFit.cover,
+            ),
+          ),
+          title: listTileTitle(news, index, context),
+          subtitle: listTileSubTitle(news, index, context),
+        );
+      },
+    );
+  }
+
+  Expanded noBookmarking(BuildContext context) {
+    return Expanded(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const CircleAvatar(
+          maxRadius: 36,
+          backgroundColor: ColorConstants.antiFlashWhite,
+          child: Icon(
+            Icons.menu_book_outlined,
+            size: 24,
+            color: ColorConstants.veryLightBlue,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 12),
+          child: Text(StringConstants.bookmarksNoBookmarking,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: ColorConstants.blackPrimary)),
+        )
+      ],
+    ));
+  }
+
+  Text listTileSubTitle(List<News> news, int index, BuildContext context) {
+    return Text(
+      news[index].name!,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: ColorConstants.blackPrimary),
+    );
+  }
+
+  Text listTileTitle(List<News> news, int index, BuildContext context) {
+    return Text(
+      news[index].source!,
+      style: Theme.of(context).textTheme.titleSmall?.copyWith(color: ColorConstants.grayPrimary),
     );
   }
 

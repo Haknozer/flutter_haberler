@@ -6,6 +6,7 @@ class CurrentUser {
     if (FirebaseAuth.instance.currentUser != null) {
       SharedInit.instance.sharedPreferences.setBool("kullaniciAktif", true);
       SharedInit.instance.sharedPreferences.setString("kullaniciEmail", FirebaseAuth.instance.currentUser!.email!);
+      SharedInit.instance.sharedPreferences.setString("kullaniciToken", FirebaseAuth.instance.currentUser!.email!);
     } else {
       SharedInit.instance.sharedPreferences.setBool("kullaniciAktif", false);
     }
@@ -18,5 +19,9 @@ class CurrentUser {
 
   String getCurrentUserEmail() {
     return SharedInit.instance.sharedPreferences.getString("kullaniciEmail") ?? "";
+  }
+
+  String? getCurrentUserToken() {
+    return SharedInit.instance.sharedPreferences.getString("kullaniciToken");
   }
 }

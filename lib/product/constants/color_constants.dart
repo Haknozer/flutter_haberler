@@ -12,4 +12,6 @@ class ColorConstants {
   static const Color transparent = Color(0x00000000);
   static const Color grayDaker = Color(0xFF666C8E);
   static const Color grayLight = Color(0xFFACAFC3);
+  static const Color veryLightBlue = Color(0xFF6563FF);
+  static const Color antiFlashWhite = Color(0xFFEEF0FB);
 }
