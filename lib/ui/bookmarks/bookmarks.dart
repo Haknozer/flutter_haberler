@@ -62,28 +62,26 @@ class _BookmarksState extends State<Bookmarks> {
     );
   }
 
-  Expanded noBookmarking(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const CircleAvatar(
-            maxRadius: 36,
-            backgroundColor: ColorConstants.antiFlashWhite,
-            child: Icon(
-              Icons.menu_book_outlined,
-              size: 24,
-              color: ColorConstants.veryLightBlue,
-            ),
+  Column noBookmarking(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const CircleAvatar(
+          maxRadius: 36,
+          backgroundColor: ColorConstants.antiFlashWhite,
+          child: Icon(
+            Icons.menu_book_outlined,
+            size: 24,
+            color: ColorConstants.veryLightBlue,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 12),
-            child: Text(StringConstants.bookmarksNoBookmarking,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: ColorConstants.blackPrimary)),
-          )
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 12),
+          child: Text(StringConstants.bookmarksNoBookmarking,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: ColorConstants.blackPrimary)),
+        )
+      ],
     );
   }
 
@@ -94,9 +92,16 @@ class _BookmarksState extends State<Bookmarks> {
         var news = snapshot.data;
         return GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, "/articlepage", arguments: news![index]);
+            Navigator.pushNamed(context, "/articlepage", arguments: news?[index]);
           },
-          child: listTile(news, index, context),
+          child: Dismissible(
+              key: UniqueKey(),
+              onDismissed: (direction) {
+                setState(() {
+                  bookmarks.deleteBookmarksNews(news![index].name.toString());
+                });
+              },
+              child: listTile(news, index, context)),
         );
       },
     );

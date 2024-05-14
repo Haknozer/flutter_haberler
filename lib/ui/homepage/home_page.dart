@@ -36,20 +36,23 @@ class _HomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWidget(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: ListView(
-          children: [
-            header(), // başlık
-            Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: categoriesBuild()), // kategoriler
-            futureBuilderBuild(), // haberler
-            Padding(padding: const EdgeInsets.only(top: 30, bottom: 10), child: recommendedText(context)),
-            recommendedNews(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBarWidget(
-        selectedIndex: 0,
+      body: body(context),
+      bottomNavigationBar: BottomNavigationBarWidget(selectedIndex: 0),
+    );
+  }
+
+  Padding body(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          header(), // başlık
+          Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: categoriesBuild()), // kategoriler
+          futureBuilderBuild(), // haberler
+          Padding(padding: const EdgeInsets.only(top: 30, bottom: 10), child: recommendedText(context)),
+          recommendedNews(),
+        ],
       ),
     );
   }

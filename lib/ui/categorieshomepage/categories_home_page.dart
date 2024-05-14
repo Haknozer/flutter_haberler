@@ -44,26 +44,24 @@ class _CategoriesHomePageState extends State<CategoriesHomePage> {
         children: [
           const TitleText(title: StringConstants.homePageTitle),
           const DescriptionText(description: StringConstants.homePageDescription),
-          futureBuilderBuild()
+          futureBuilder(),
         ],
       ),
     );
   }
 
-  Expanded futureBuilderBuild() {
-    return Expanded(
-      child: FutureBuilder(
-        future: homePageNewsService.getNews(tag),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return listViewBuild(snapshot);
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
-      ),
+  FutureBuilder<List<News>> futureBuilder() {
+    return FutureBuilder(
+      future: homePageNewsService.getNews(tag),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Expanded(child: listViewBuild(snapshot));
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 

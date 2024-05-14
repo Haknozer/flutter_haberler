@@ -32,4 +32,10 @@ class BookmarkFirestoreDatabase {
     list = response.docs.map((e) => News.fromSnapshot(e as DocumentSnapshot<Map<String, dynamic>>)).toList();
     return list;
   }
+
+  Future deleteBookmarksNews(String name) async {
+    String? key = await getToken() ?? "";
+    CollectionReference users = FirebaseFirestore.instance.collection(key);
+    await users.doc(name).delete();
+  }
 }
