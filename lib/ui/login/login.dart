@@ -19,12 +19,6 @@ var _action = AuthAction.signIn;
 
 class _LoginPageState extends State<LoginPage> {
   @override
-  void initState() {
-    super.initState();
-    CurrentUser().setCurrentUser(FirebaseAuth.instance);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -68,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                   actions: [
                     AuthStateChangeAction<SignedIn>((context, state) {
                       if (state.user != null) {
+                        CurrentUser().setCurrentUser(FirebaseAuth.instance);
                         print("giriş yapıldı");
                         Navigator.popAndPushNamed(context, '/homepage');
                       }
